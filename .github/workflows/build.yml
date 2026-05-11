@@ -38,13 +38,13 @@ jobs:
       - name: Set up loong64 Debian container
         uses: maus007/docker-run-action-fork@5ddaad0f7eedd03f64e412b1931852bd3031b273
         with:
-          image: linuxdeepin/deepin:crimson-loong64
+          image: ghcr.io/loong64/loongnix:25
           options: --cpus=4 --platform linux/loong64 --privileged -v ${{ github.workspace }}:/work
           run: |
             cd /work
             apt update; apt install sudo git build-essential devscripts equivs -y
             git config --global --add safe.directory /work
-            mk-build-deps -i -t "apt -y" -r
+            mk-build-deps -i -r -t "apt -y --no-install-recommends"
             dpkg-buildpackage -b -uc -us
             mkdir -p output_artifacts
             mv ../*.deb output_artifacts/
