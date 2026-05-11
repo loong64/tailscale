@@ -50,3 +50,5 @@ override_dh_auto_install:
 	install -Dm755 -t $(CURDIR)/debian/tailscale/usr/sbin $(CURDIR)/tailscale/tailscaled
 	cp -arv $(CURDIR)/rootfs/* $(CURDIR)/debian/tailscale/
 
+override_dh_dwz:
+	:
