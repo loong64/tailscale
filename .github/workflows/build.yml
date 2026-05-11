@@ -59,3 +59,15 @@ jobs:
           path: ${{ github.workspace }}/output_artifacts/*
           compression-level: 0
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+
+      - name: Upload to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          shopt -s nullglob
+          cd ${{ github.workspace }}/output_artifacts
+          files=(*.deb)
+          for i in "${files[@]}"; do
+            gh release upload  ${{ github.event.inputs.version }} $i --repo ${{ github.repository }}
+          done
