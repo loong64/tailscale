@@ -28,6 +28,7 @@ jobs:
           repository: tailscale/tailscale
           ref: ${{ github.event.inputs.version }}
           submodules: recursive
+          path: tailscale
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
