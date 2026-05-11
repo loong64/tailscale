@@ -45,6 +45,7 @@ jobs:
             cd /work
             apt update; apt install sudo git build-essential devscripts equivs -y
             git config --global --add safe.directory /work
+            git config --global --add safe.directory /work/tailscale
             mk-build-deps -i -r -t "apt -y --no-install-recommends"
             dpkg-buildpackage -b -uc -us
             mkdir -p output_artifacts
