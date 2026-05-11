@@ -42,10 +42,8 @@ override_dh_auto_configure:
 	:
 
 override_dh_auto_build:
-	cd $(CURDIR)/tailscale
-	ls -l
-	bash build_dist.sh tailscale.com/cmd/tailscale
-	bash build_dist.sh tailscale.com/cmd/tailscaled
+	cd $(CURDIR)/tailscale && ./build_dist.sh tailscale.com/cmd/tailscale
+	cd $(CURDIR)/tailscale && ./build_dist.sh tailscale.com/cmd/tailscaled
 
 override_dh_auto_install:
 	install -Dm755 -t $(CURDIR)/debian/tailscale/usr/bin $(CURDIR)/tailscale/tailscale
