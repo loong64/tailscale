@@ -1,0 +1,23 @@
+Source: tailscale
+Section: net
+Priority: extra
+Maintainer: elysia-best <a.elysia@proton.me>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ golang
+Standards-Version: 4.7.2
+Homepage: https://www.tailscale.com
+Vcs-Browser: https://github.com/tailscale/tailscale
+Vcs-Git: https://github.com/tailscale/tailscale.git
+
+Package: tailscale
+Architecture: any
+Replaces: tailscale-relay
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ iptables
+Recommends: iproute2
+Conflicts: tailscale-relay
+Description: The easiest, most secure, cross platform way to use WireGuard + oauth2 + 2FA/SSO
